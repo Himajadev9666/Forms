@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            background-image: linear-gradient(to right, red, lightgreen, yellow, lightblue);
+        }
+        .container {
+            display: block;
+            border: 1px solid black;
+            background-color: white;
+            height: 250px;
+            width: 300px;
+            gap: 10px;
+            margin-left: 500px;
+            margin-top: 80px;
+        }
+        .h1 {
+            margin: 8px;
+        }
+        .h1:hover {
+            background-color: lightcyan;
+            border-color: lightblue;
+        }
+        .h {
+            text-align: center;
+        }
+        .h2 {
+            margin-left: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="h">Login to your account</h2>
+        <form>
+            <input type="text" class="h1 h2" id="username" placeholder="Username"/>
+            <input type="password" class="h1 h2" id="password" placeholder="Password"/>
+            <button class="h1 h2" id="login">Login</button>
+            <p class="h1 h2">Don't have an account? <a href="./account.html" style="color: blue;">Create one</a></p>
+        </form>
+    </div>
+<script>
+    document.querySelector('#login').addEventListener('click', function(event) {
+        event.preventDefault(); 
+        var username = document.querySelector("#username").value;
+        var password = document.querySelector("#password").value;
+        if (username && password) {
+          let existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+          let userExists = existingUsers.find(user => user.name === username && user.password === password);
+
+          if (userExists) {
+            alert("Login successful!");
+            // Redirect or perform further actions after successful login
+          } else {
+            alert("Incorrect username or password!");
+          }
+        } else {
+          alert("Please enter both username and password");
+        }
+      });
+        
+    //     var storedData = JSON.parse(localStorage.getItem('users'));
+    //     if (storedData && storedData.username === username && storedData.password === password) {
+    //         alert('Login successful!');
+            
+    //     } else {
+    //         alert('Incorrect username or password!');
+    //     }
+    // });
+</script>
+</body>
+</html>
